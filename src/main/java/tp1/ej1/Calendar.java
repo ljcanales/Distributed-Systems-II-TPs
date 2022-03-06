@@ -7,8 +7,8 @@ import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 
 public class Calendar extends UnicastRemoteObject implements RemoteCalendar {
+
     protected Calendar() throws RemoteException {
-        super();
     }
 
     @Override
