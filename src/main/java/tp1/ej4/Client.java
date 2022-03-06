@@ -11,9 +11,30 @@ public class Client {
     public static void main(String[] args) throws RemoteException, NotBoundException {
         Registry registry = LocateRegistry.getRegistry(Constants.REGISTRY_PORT);
         RemoteCalculator calculator = (RemoteCalculator) registry.lookup("calculator");
-        System.out.println("20 + 68 is " + calculator.sum(20, 68));
-        System.out.println("80 - 68 is " + calculator.subtract(80, 68));
-        System.out.println("20 * 68 is " + calculator.multiply(20, 68));
-        System.out.println("5000 / 50 is " + calculator.divide(5000, 50));
+
+        if(args.length != 3) {
+            System.out.println("");
+            return;
+        }
+
+        long op1 = Long.parseLong(args[0]);
+        long op2 = Long.parseLong(args[1]);
+        long result;
+        String oper = args[2];
+
+        switch (oper) {
+            case "+":
+                result = calculator.sum(op1, op2); break;
+            case "-":
+                result = calculator.subtract(op1, op2); break;
+            case "*":
+                result = calculator.multiply(op1, op2); break;
+            case "/":
+                result = calculator.divide(op1, op2); break;
+            default:
+                System.out.println("Wrong operation!"); return;
+        }
+
+        System.out.println(String.format("%d %s %d is %d", op1, oper, op2, result));
     }
 }
