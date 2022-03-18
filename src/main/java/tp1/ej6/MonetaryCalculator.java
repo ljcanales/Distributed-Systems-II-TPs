@@ -10,6 +10,6 @@ public class MonetaryCalculator extends UnicastRemoteObject implements RemoteMon
 
     @Override
     public long cuantoVale(long importe, int plazo) throws RemoteException {
-        return (long) (importe - importe * plazo * (0.548 / 12));
+        return (long) (importe - importe * plazo * (INFLATION / 12));
     }
 }
